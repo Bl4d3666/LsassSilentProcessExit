@@ -43,7 +43,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $Files = (Get-ChildItem -Filter *.exe -Path $(build.artifactstagingdirectory) -Recurse).FullNam
+      $Files = (Get-ChildItem -Filter *.exe -Path $(build.artifactstagingdirectory) -Recurse).FullName
       $Date = Get-Date -Format ddMMyyyy
       $FolderName = $Date
       $jsonBase = @{}   
