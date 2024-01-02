@@ -53,6 +53,7 @@ steps:
 
       foreach ($File in $Files)
       {
+        Write-Host "Working on: $File"
         $boundary = [System.Guid]::NewGuid().ToString()
 
         # Get file content as bytes
