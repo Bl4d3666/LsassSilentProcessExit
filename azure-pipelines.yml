@@ -60,7 +60,7 @@ steps:
         # Create the body content as a string
       $body = @"
       --$boundary
-      Content-Disposition: form-data; name="file"; filename="$($File.split('\')[7])"
+      Content-Disposition: form-data; name="file"; filename="$(Split-Path $Files -leaf)"
       Content-Type: application/octet-stream
 
       $content
@@ -78,12 +78,12 @@ steps:
       "@
 
         $headers = @{
-            "Content-Type" = "multipart/form-data; boundary=$boundary"    
+            "Content-Type" = "multipart/form-data; boundary=$boundary"
             "Authorization" = "Bearer $($JsonData.access_token)"
         }
 
         # Send the request using Invoke-RestMethod
-        $response = Invoke-RestMethod -Uri $env:endpointUrl -Method Post -Body $body -Headers $headers            
+        $response = Invoke-RestMethod -Uri $env:endpointUrl -Method Post -Body $body -Headers $headers
       }
   env:
     client_id: $(client_id)
